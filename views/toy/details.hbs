@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Toy Detail</title>
+   <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333; /* Set a base color for the text */
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure navbar is on top of other content */
+            height: 6%;
+        }
+
+        .navbar .nav-link, .navbar-brand {
+            color: white;
+        }
+
+        .navbar .nav-link:hover, .navbar-brand:hover {
+            color: #ffc107;
+        }
+
+        .container {
+            max-width: 1200px;
+            background: white; /* White background for the content area */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .col {
+            flex: 1;
+            margin: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #d9534f; /* Bootstrap danger color */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: #333; /* Darker color for better contrast */
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-danger {
+            color: #d9534f; /* Bootstrap danger color */
+        }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <div class="row">
+         <div class="col">
+            <img src="{{ toy.cover }}" width="400" height="450" alt="Toy Image">
+         </div>
+         <div class="col">
+            <h1 class="text text-danger">Toy Detail</h1>
+            <h3>Name: {{ toy.name }}</h3>
+            <h3>Description: {{ toy.description }}</h3>
+            <h3>Price: ${{ toy.price }}</h3>
+
+         </div>
+      </div>
+   </div>
+</body>
+
+</html>

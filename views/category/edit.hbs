@@ -1,0 +1,54 @@
+<div class="container text-center card bg-light col-md-6">
+   <form action="/category/edit/{{ category._id }}" method="post">
+      <h1 class="alert alert-warning text-uppercase">Edit Category</h1>
+      <div class="form-group mt-3">
+         <label class="text text-danger fw-bold">Category name</label>
+         <input class="form-control" type="text" placeholder="Enter Category Name" name="name" required minlength="1" value="{{ category.name }}">
+      </div>
+      <div class="form-group mt-3">
+         <label class="text text-danger fw-bold">Category Cover</label><br>
+         <img src="{{ category.cover }}" width="100" height="120"><br>
+         <input class="form-control" type="url" name="cover" placeholder="Enter toy cover url" required value="{{ category.cover}}">
+      </div>
+    
+      <div class="form-group mt-3 mb-3">
+         <input class="btn btn-success" type="submit" value="Edit">
+      </div>
+   </form>
+</div>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+                .navbar {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure navbar is on top of other content */
+            height: 6%;
+        }
+        .navbar .nav-link, .navbar-brand {
+            color: white;
+        }
+        .navbar .nav-link:hover, .navbar-brand:hover {
+            color: #ffc107;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
