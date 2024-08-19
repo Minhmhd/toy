@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     req.session.userId = user._id; // Lưu ID người dùng vào session
     req.session.role = user.role; // Lưu vai trò người dùng vào session
     if (user.role === 'admin') {
-      return res.redirect('/');
+      return res.redirect('/category');
     } else {
       return res.redirect('/customer/index');
     }
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 });
 
 // Đường dẫn cho đăng xuất
-/*router.post('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
       return res.redirect('/');
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
     res.clearCookie('connect.sid'); // Xoá cookie session
     res.redirect('/'); // Quay lại trang đăng nhập
   });
-});*/
+});
 
 /*router.post('/signup', async (req, res) => {
   try {
