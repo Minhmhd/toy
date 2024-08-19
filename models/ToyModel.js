@@ -15,7 +15,10 @@ const ToySchema = new mongoose.Schema(
          max: 1000
       },
       cover: String,
-      category: mongoose.Schema.Types.ObjectId
+      category: mongoose.Schema.Types.ObjectId,
+     
+      origin :{type: mongoose.Schema.Types.ObjectId ,ref:'origins'}
+      
    }
 )
 const ToyModel = mongoose.model('toys', ToySchema)  //books: table name

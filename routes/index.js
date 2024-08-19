@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const fetchcategories = require('../middleware/categories')
+const fetchorigins = require('../middleware/origins')
 var CategoryModel = require('../models/CategoryModel')
 const ToyModel = require('../models/ToyModel')
 router.use(fetchcategories)
+router.use(fetchorigins)
 
 // search toy
 router.post('/search',async(req,res)=>{
@@ -22,7 +24,7 @@ router.get('/', async(req, res, next) => {
 
 router.get('/customer/toy/:id', async (req, res) => {
   let id = req.params.id
-  let toys = await ToyModel.find({category:id}).sort({_id: -1})
+  let toys = await ToyModel.find({category:id}).sort({_id: -1}).populate('origin')
   console.log(toys)
  res.render('customer/toy', { toys })
 }) 
@@ -31,7 +33,7 @@ router.get('/customer/detail/:id', async (req, res) => {
   //get book id value from url
   let id = req.params.id
   //return book data based on id
-  let toy = await ToyModel.findById(id)
+  let toy = await ToyModel.findById(id).populate('origin')
   //render view with book data
   res.render('customer/detail', { toy })
 })

@@ -1,16 +1,19 @@
 const express = require('express')
 const router = express.Router()
 var ToyModel = require('../models/ToyModel')
+var OriginModel = require('../models/OriginModel')
 var CategoryModel = require('../models/CategoryModel')
 const fetchcategories = require('../middleware/categories')
+const fetchorigins = require('../middleware/origins')
 //Get all books
 //URL: http://localhost:PORT/book
 router.use(fetchcategories)
+router.use(fetchorigins)
 
 router.get('/', async (req, res) => {
-  let toys = await ToyModel.find({}).sort({_id: -1})
+  let toys = await ToyModel.find({}).sort({_id: -1}).populate('origin')
   console.log(toys)
- res.render('toy/index', { toys, layout : 'layoutadmin' } )
+ res.render('toy/index', { toys,   layout : 'layoutadmin' } )
 })
 
 //Get book by id
@@ -19,7 +22,8 @@ router.get('/details/:id', async (req, res) => {
    //get book id value from url
    let id = req.params.id
    //return book data based on id
-   let toy = await ToyModel.findById(id)
+   let toy = await ToyModel.findById(id).populate('origin')
+   
    //render view with book data
    res.render('toy/details', { toy , layout : 'layoutadmin'})
 })
@@ -47,7 +51,9 @@ router.get('/delete/:id', async (req, res) => {
 //render form "Add book" for user to input
 router.get('/add', async (req, res) => {
    let toys = await ToyModel.find({})
-   res.render('toy/add',{ toys, layout : 'layoutadmin'})
+   let origins = await OriginModel.find({})
+   console.log(origins)
+   res.render('toy/add',{ toys, origins, layout : 'layoutadmin'})
 })
 
 //get input data tu add book form va save vao database
